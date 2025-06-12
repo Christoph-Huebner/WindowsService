@@ -1,35 +1,36 @@
 # WindowsService
 
-Kompakter Windows-Dienst (.NET 6) als BackgroundService.
+Compact Windows Service (.NET 9) implemented as a BackgroundService.
 
-## Übersicht
-Führt Hintergrundaufgaben als Windows Service (C# Worker Service).
+## Overview
+Executes background tasks as a Windows Service using the .NET Worker Service template.
 
-## Voraussetzungen
-- Windows 10+
-- .NET 6 SDK
-- PowerShell (Admin) zur Dienstinstallation
+## Prerequisites
+- Windows 10 or newer
+- .NET 9 SDK (also compatible with .NET 6)
+- PowerShell with Administrator rights (for service installation)
 
-## Build & Start
+## Build & Run Locally
 ```bash
 git clone https://github.com/Christoph-Huebner/WindowsService.git
 cd WindowsService
+
 dotnet build
-# Als Konsole starten:
+# Run as console application:
 dotnet run --project WindowsService/WindowsService.csproj
 ```
 
-## Installation als Dienst
+## Install as Windows Service
 ```powershell
-sc create WindowsService binPath="C:\Pfad\WindowsService.exe" DisplayName="WindowsService" start=auto
+sc create WindowsService binPath="C:\Path\To\WindowsService.exe" DisplayName="WindowsService" start=auto
 sc start WindowsService
 sc stop WindowsService
 sc delete WindowsService
 ```
 
-## Konfiguration & Logging
-- `appsettings.json` neben der EXE ablegen.
-- Logs: Windows-Ereignisprotokoll (Dienst) / Konsole (Run).
+## Configuration & Logging
+- Place `appsettings.json` next to the executable to override default settings.
+- Logs write to the Windows Event Log when running as a service, or to the console in local mode.
 
-## Mitwirken
-Issues & PRs willkommen!
+## Contributing
+Issues and pull requests are welcome!
